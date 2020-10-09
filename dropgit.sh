@@ -21,7 +21,14 @@ fi
 # Create Dropbox and git directories if they do not exist
 mkdir -pv ~/Dropbox/git
 
+# Find the base dir for git repository
 BASE_DIR="$(basename `git rev-parse --show-toplevel`)" && echo "BASE GIT DIRECTORY: $BASE_DIR"
+
+# Create git bare repo on Dropbox
 git init --bare ~/Dropbox/git/$BASE_DIR.git && echo "Create git bare repo in dropbox"
+
+# Check if there is a previous dropbox remote rm it
 (git remote rm dropbox && echo "Previous dropbox remote removed") || echo "Previous Dropbox remote checked"
+
+# Add new remote to git repository
 git remote add dropbox ~/Dropbox/git/$BASE_DIR.git && echo "Add dropbox remote to your git repository"
