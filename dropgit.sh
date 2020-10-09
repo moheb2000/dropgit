@@ -13,7 +13,7 @@ if ! [ -x "$(command -v dropbox)" ]; then
 fi
 
 # Check if current directory is not a git repository
-if ! [ "$(git rev-parse --git-dir > /dev/null 2>&1)" ]; then
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
 	echo "Dropgit Error: This directory is not a git repository. Please first run (git init)" >&2
 	exit 3
 fi
